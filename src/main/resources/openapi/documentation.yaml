@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: MyRecipes API
+  description: API de receitas em Kotlin
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /health:
+    get:
+      description: Endpoint de verificação de saúde
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+
+components:
+  schemas:
+    HealthCheck:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "UP"
