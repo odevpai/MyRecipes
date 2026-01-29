@@ -1,4 +1,4 @@
-package br.com
+package br.com.plugins
 
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -18,13 +18,17 @@ fun Application.configureHTTP() {
     routing {
         openAPI(path = "openapi")
     }
+
     install(CORS) {
-        allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
+        allowMethod(HttpMethod.Options)
         allowHeader(HttpHeaders.Authorization)
+        allowHeader(HttpHeaders.ContentType)
         allowHeader("MyCustomHeader")
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
+        allowCredentials = true
     }
 }

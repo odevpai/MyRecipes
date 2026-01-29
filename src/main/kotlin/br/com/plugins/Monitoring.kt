@@ -1,4 +1,4 @@
-package br.com
+package br.com.plugins
 
 import com.codahale.metrics.Slf4jReporter
 import io.ktor.server.application.*

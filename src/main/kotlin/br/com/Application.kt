@@ -1,17 +1,19 @@
 package br.com
 
+import br.com.plugins.*
 import io.ktor.server.application.*
-import io.ktor.server.netty.EngineMain
+import io.ktor.server.netty.*
 
 fun main(args: Array<String>) {
     EngineMain.main(args)
 }
 
 fun Application.module() {
-    configureHTTP()
-    configureSockets()
-    configureSerialization()
-    configureMonitoring()
+    configureDI()
     configureSecurity()
+    configureHTTP()
+    configureStatusPage()
+    configureMonitoring()
+    configureSockets()
     configureRouting()
 }

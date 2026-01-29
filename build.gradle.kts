@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 val kotlin_version: String by project
 val logback_version: String by project
 val mongo_version: String by project
@@ -9,13 +11,22 @@ val bcrypt_version: String by project
 val truth_version: String by project
 val turbine_version: String by project
 
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xannotation-default-target=param-property"))
+}
+
+kotlin {
+    jvmToolchain(21)
+}
+
 plugins {
     kotlin("jvm") version "2.2.21"
     id("io.ktor.plugin") version "3.3.2"
     id("org.jetbrains.kotlin.plugin.serialization") version "2.2.21"
 }
-
 group = "com.br"
+
 version = "0.0.1"
 
 application {
@@ -41,12 +52,13 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")
-    implementation("org.mongodb:mongodb-driver-bom:$mongo_version")
+    implementation(platform("org.mongodb:mongodb-driver-bom:$mongo_version"))
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine")
     implementation("io.github.g0dkar:qrcode-kotlin:$qrcode_kotlin_version")
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:$kotlinx_datetime_version")
     implementation("at.favre.lib:bcrypt:$bcrypt_version")
 
-    testImplementation("app.cash.turbine:$turbine_version")
+    testImplementation("app.cash.turbine:turbine:$turbine_version")
     testImplementation("io.mockk:mockk:${mockkVersion}")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")

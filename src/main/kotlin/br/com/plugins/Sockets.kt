@@ -1,4 +1,4 @@
-package br.com
+package br.com.plugins
 
 import io.ktor.server.application.*
 import io.ktor.server.websocket.*
