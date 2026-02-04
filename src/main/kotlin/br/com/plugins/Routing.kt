@@ -1,6 +1,6 @@
 package br.com.plugins
 
-import br.com.domain.services.AddUserService
+import br.com.domain.services.user.AddUserService
 import io.ktor.server.application.*
 import org.koin.ktor.ext.inject
 import io.ktor.server.routing.routing

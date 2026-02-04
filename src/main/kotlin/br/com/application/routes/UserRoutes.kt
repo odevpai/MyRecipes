@@ -1,7 +1,7 @@
 package br.com.application.routes
 
 import br.com.application.payloads.request.AddUserRequest
-import br.com.domain.services.AddUserService
+import br.com.domain.services.user.AddUserService
 import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -23,7 +23,7 @@ fun Route.createUser(addUserService: AddUserService){
             val request = call.receiveNullable<AddUserRequest>()
             if (request != null) {
                 val simpleResponse = addUserService.addUser(request)
-                if (simpleResponse.succesful) {
+                if (simpleResponse.successful) {
                     call.respond(HttpStatusCode.Created, simpleResponse)
                 } else {
                     call.respond(HttpStatusCode.BadRequest, simpleResponse)

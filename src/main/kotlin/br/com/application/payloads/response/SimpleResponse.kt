@@ -1,6 +1,9 @@
 package br.com.application.payloads.response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class SimpleResponse(
-    val succesful: Boolean,
+    val successful: Boolean,
     val message: String? = null
 )
