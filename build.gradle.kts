@@ -61,7 +61,9 @@ dependencies {
     testImplementation("app.cash.turbine:turbine:$turbine_version")
     testImplementation("io.mockk:mockk:${mockkVersion}")
     testImplementation("io.ktor:ktor-server-test-host")
+    testImplementation("io.ktor:ktor-server-test-host-jvm")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("com.google.truth:truth:$truth_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 
 }

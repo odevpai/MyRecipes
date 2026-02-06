@@ -18,7 +18,7 @@ class UserRepository(
 
     override suspend fun findById(id: String): User? {
         try {
-            return usersCollection.find(Filters.eq("_id", id)).first()
+            return usersCollection.find(Filters.eq("_id", ObjectId(id))).firstOrNull()
         } catch (e: Exception) {
             logger.error("Error finding user by id: $id", e)
             return null

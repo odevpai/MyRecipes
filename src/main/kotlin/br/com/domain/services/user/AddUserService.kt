@@ -4,14 +4,14 @@ import br.com.application.payloads.request.AddUserRequest
 import br.com.application.payloads.response.SimpleResponse
 import br.com.domain.entity.User
 import br.com.domain.services.password.BCryptPasswordService
-import br.com.domain.validations.AddValidationUserRequest
+import br.com.domain.validations.AddUserRequestValidation
 import br.com.infra.repository.user.UserReadOnlyRepository
 import br.com.infra.repository.user.UserWriteOnlyRepository
 import br.com.utils.ErrorCodes
 import br.com.utils.SuccessCodes
 
 class AddUserService(
-    private val addValidationUserRequest: AddValidationUserRequest,
+    private val addUserRequestValidation: AddUserRequestValidation,
     private val userWriteOnlyRepository: UserWriteOnlyRepository,
     private val userReadOnlyRepository: UserReadOnlyRepository,
     private val bCryptPasswordService: BCryptPasswordService
@@ -19,7 +19,7 @@ class AddUserService(
 
     suspend fun addUser(addUserRequest: AddUserRequest): SimpleResponse {
 
-        val simpleResponse = addValidationUserRequest.validator(addUserRequest)
+        val simpleResponse = addUserRequestValidation.validator(addUserRequest)
         if (!simpleResponse.successful)
             return simpleResponse
 
